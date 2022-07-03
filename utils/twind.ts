@@ -27,6 +27,9 @@ export const config: Configuration = {
         "mobile-pattern": "url('/background/bg-intro-mobile.png')",
         "desktop-pattern": "url('/background/bg-intro-desktop.png')",
       },
+      screens: {
+        xs: "410px",
+      },
     },
   },
 };
