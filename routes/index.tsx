@@ -2,6 +2,7 @@
 import { h, Fragment } from "preact";
 import { tw } from "@twind";
 import Seo from "../islands/Seo.tsx";
+import Form from "../islands/Form.tsx";
 
 const Home = () => {
   return (
@@ -30,35 +31,8 @@ const Home = () => {
           >
             <b>Try it free 7 days</b> then $20/mo. thereafter
           </div>
-          <section class={tw`bg-white rounded-lg p-6 shadow-xl`}>
-            <form class={tw`flex flex-col gap-5`}>
-              <input
-                type="text"
-                placeholder="First Name"
-                class={tw`p-3 rounded border border-neutral-grayishBlue font-semibold text-sm text-neutral-darkBlue text-sm`}
-              />
-              <input
-                type="text"
-                placeholder="Last Name"
-                class={tw`p-3 rounded border border-neutral-grayishBlue font-semibold text-sm text-neutral-darkBlue text-sm`}
-              />
-              <input
-                type="email"
-                placeholder="Email Address"
-                class={tw`p-3 rounded border border-neutral-grayishBlue font-semibold text-sm text-neutral-darkBlue text-sm`}
-              />
-              <input
-                type="password"
-                placeholder="Password"
-                class={tw`p-3 rounded border border-neutral-grayishBlue font-semibold text-sm text-neutral-darkBlue text-sm`}
-              />
-              <button
-                class={tw`p-3 w-full bg-primary-green rounded font-semibold text-white hover:opacity-90 transition shadow-lg`}
-                type="submit"
-              >
-                Claim your free trial
-              </button>
-            </form>
+          <section class={tw`bg-white rounded-lg p-6 shadow-xl xl:p-8`}>
+            <Form />
             <p
               class={tw`font-medium text-neutral-grayishBlue text-xs mt-4 text-center`}
             >
