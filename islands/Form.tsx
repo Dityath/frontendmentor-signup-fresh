@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { useState, useEffect, useRef } from "preact/hooks";
+import { useState, useEffect } from "preact/hooks";
 
 const Form = () => {
   const [data, setData] = useState({
