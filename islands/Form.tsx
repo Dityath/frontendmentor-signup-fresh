@@ -1,7 +1,7 @@
 /** @jsx h */
 import { h } from "preact";
 import { tw } from "@twind";
-import { useState, useEffect } from "preact/hooks";
+import { useState, useEffect, useRef } from "preact/hooks";
 
 const Form = () => {
   const [data, setData] = useState({
@@ -16,11 +16,28 @@ const Form = () => {
   const [emailValid, setEmailValid] = useState("");
   const [passwordValid, setPasswordValid] = useState("");
 
+  const [firstNameTouched, setFirstNameTouched] = useState(false);
+  const [lastNameTouched, setLastNameTouched] = useState(false);
+  const [emailTouched, setEmailTouched] = useState(false);
+  const [passwordTouched, setPasswordTouched] = useState(false);
+
   const handleInputChange = (
     e: h.JSX.TargetedEvent<HTMLFormElement, Event>
   ) => {
     e.preventDefault();
-    console.log(data);
+    if (
+      firstNameValid === "" &&
+      lastNameValid === "" &&
+      emailValid === "" &&
+      passwordValid === ""
+    ) {
+      console.log("data form: ", data);
+    } else {
+      setFirstNameTouched(true);
+      setLastNameTouched(true);
+      setEmailTouched(true);
+      setPasswordTouched(true);
+    }
   };
 
   useEffect(() => {
@@ -75,15 +92,26 @@ const Form = () => {
             const target = e.target as HTMLInputElement;
             setData({ ...data, firstName: target.value });
           }}
+          value={data.firstName}
+          onBlur={() => {
+            setFirstNameTouched(true);
+          }}
           class={tw`p-3 rounded border ${
-            firstNameValid
+            firstNameValid && firstNameTouched
               ? "border-primary-red text-primary-red placeholder-primary-red"
               : "border-neutral-grayishBlue text-neutral-darkBlue"
           } font-semibold text-sm text-sm w-full`}
         />
-        <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
-          {firstNameValid && firstNameValid}
-        </p>
+        {firstNameTouched && (
+          <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
+            {firstNameValid && firstNameValid}
+          </p>
+        )}
+        {firstNameTouched && (
+          <span class={tw`absolute right-2 top-[0.7rem]`}>
+            {firstNameValid && <img src="/icon-error.svg" alt="" />}
+          </span>
+        )}
       </div>
       <div class={tw`relative w-full`}>
         <input
@@ -93,15 +121,26 @@ const Form = () => {
             const target = e.target as HTMLInputElement;
             setData({ ...data, lastName: target.value });
           }}
+          value={data.lastName}
+          onBlur={() => {
+            setLastNameTouched(true);
+          }}
           class={tw`p-3 rounded border ${
-            lastNameValid
+            lastNameValid && lastNameTouched
               ? "border-primary-red text-primary-red placeholder-primary-red"
               : "border-neutral-grayishBlue text-neutral-darkBlue"
           } font-semibold text-sm text-sm w-full`}
         />
-        <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
-          {lastNameValid && lastNameValid}
-        </p>
+        {lastNameTouched && (
+          <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
+            {lastNameValid && lastNameValid}
+          </p>
+        )}
+        {lastNameTouched && (
+          <span class={tw`absolute right-2 top-[0.7rem]`}>
+            {lastNameValid && <img src="/icon-error.svg" alt="" />}
+          </span>
+        )}
       </div>
       <div class={tw`relative w-full`}>
         <input
@@ -111,15 +150,26 @@ const Form = () => {
             const target = e.target as HTMLInputElement;
             setData({ ...data, email: target.value });
           }}
+          value={data.email}
+          onBlur={() => {
+            setEmailTouched(true);
+          }}
           class={tw`p-3 rounded border ${
-            emailValid
+            emailValid && emailTouched
               ? "border-primary-red text-primary-red placeholder-primary-red"
               : "border-neutral-grayishBlue text-neutral-darkBlue"
           } font-semibold text-sm text-sm w-full`}
         />
-        <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
-          {emailValid && emailValid}
-        </p>
+        {emailTouched && (
+          <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
+            {emailValid && emailValid}
+          </p>
+        )}
+        {emailTouched && (
+          <span class={tw`absolute right-2 top-[0.7rem]`}>
+            {emailValid && <img src="/icon-error.svg" alt="" />}
+          </span>
+        )}
       </div>
       <div class={tw`relative w-full`}>
         <input
@@ -129,15 +179,26 @@ const Form = () => {
             const target = e.target as HTMLInputElement;
             setData({ ...data, password: target.value });
           }}
+          value={data.password}
+          onBlur={() => {
+            setPasswordTouched(true);
+          }}
           class={tw`p-3 rounded border ${
-            passwordValid
+            passwordValid && passwordTouched
               ? "border-primary-red text-primary-red placeholder-primary-red"
               : "border-neutral-grayishBlue text-neutral-darkBlue"
           } font-semibold text-sm text-sm w-full`}
         />
-        <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
-          {passwordValid && passwordValid}
-        </p>
+        {passwordTouched && (
+          <p class={tw`absolute text-xs text-right text-primary-red right-0`}>
+            {passwordValid && passwordValid}
+          </p>
+        )}
+        {passwordTouched && (
+          <span class={tw`absolute right-2 top-[0.7rem]`}>
+            {passwordValid && <img src="/icon-error.svg" alt="" />}
+          </span>
+        )}
       </div>
       <button
         class={tw`p-3 w-full bg-primary-green rounded font-semibold text-white hover:opacity-90 transition shadow-lg`}
